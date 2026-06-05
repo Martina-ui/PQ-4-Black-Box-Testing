@@ -98,7 +98,7 @@ TEST_CASE("Remove from empty tree returns false", "[remove]") {
 
 //preorder tests:
 // Performs a preorder traversal and returns list of node pointers if there were nodes in the tree.
-TEST_CASE("TraversePreorder empty tree returns empty vector", "[preorder_traversal]]") {
+TEST_CASE("TraversePreorder empty tree returns empty vector", "[preorder_traversal]") {
 	GatorBST tree;
 	REQUIRE(tree.TraversePreorder().empty());
 }
@@ -115,7 +115,7 @@ TEST_CASE("TraversePreorder visits root before children", "[traversal][preorder]
 
 //inorder tests:
 // Performs an inorder traversal and returns list of node pointers if there were nodes in the tree.
-TEST_CASE("TraverseInorder empty tree returns empty vector", "[inorder_traversal]]") {
+TEST_CASE("TraverseInorder empty tree returns empty vector", "[inorder_traversal]") {
 	GatorBST tree;
 	REQUIRE(tree.TraverseInorder().empty());
 }
@@ -136,7 +136,7 @@ TEST_CASE("TraverseInorder returns nodes in ascending order", "[traversal][inord
 
 //postorder tests;
 // Performs a postorder traversal and returns list of node pointers if there were nodes in the tree.
-TEST_CASE("TraversePostorder empty tree returns empty vector", "[postorder_traversal]]") {
+TEST_CASE("TraversePostorder empty tree returns empty vector", "[postorder_traversal]") {
 	GatorBST tree;
 	REQUIRE(tree.TraversePostorder().empty());
 }
