@@ -47,12 +47,12 @@ TEST_CASE("Insert duplicate returns false", "[insert]") {
 // Searches for node with given UFID. Returns an optional string view - if not found, returns std::nullopt and will
 // fail .has_value check. If found, returns a string_view, which is essentially a fancier form of a pointer for a
 // string that does not allocate new memory or take "ownership".
-TEST_CASE("If not found, returns nullopt", "[search_id]") {
+TEST_CASE("Returns nullopt if node is not found", "[search_id]") {
 	GatorBST tree;
 	REQUIRE(!tree.SearchID(50).has_value());
 }
 
-TEST_CASE("If found, returns a string_view", "[search_id]") {
+TEST_CASE("Returns a string_view if node found", "[search_id]") {
 	GatorBST tree;
 	tree.Insert(50, "Martina");
 	auto result = tree.SearchID(50);
@@ -63,6 +63,23 @@ TEST_CASE("If found, returns a string_view", "[search_id]") {
 //searchNAME tests:
 // Searches for name. Since multiple UFID's can share the same name, returns a vector with all matching ID's in ascending order.
 // If none are found, the returned vector will be empty.
+TEST_CASE("Returns a vector with all matching ID's in ascending order", "[search_name]") {
+	GatorBST tree;
+	tree.Insert(50, "Martina");
+	tree.Insert(30, "Martina");
+	tree.Insert(70, "Martina");
+	auto result = tree.SearchName("Martina");
+    REQUIRE(result.size() == 3);
+    REQUIRE(result[0] == 30);
+    REQUIRE(result[1] == 50);
+    REQUIRE(result[2] == 70);
+}
+
+TEST_CASE("Returns empty vector for non-existent name", "[search_name]") {
+	GatorBST tree;
+	auto result = tree.SearchName("Martina");
+	REQUIRE(result.empty());
+}
 
 //Remove tests:
 // Deletes node with provided UFID. If found (and removed), return true. If node was not present, return false.
