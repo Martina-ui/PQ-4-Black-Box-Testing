@@ -47,6 +47,18 @@ TEST_CASE("Insert duplicate returns false", "[insert]") {
 // Searches for node with given UFID. Returns an optional string view - if not found, returns std::nullopt and will
 // fail .has_value check. If found, returns a string_view, which is essentially a fancier form of a pointer for a
 // string that does not allocate new memory or take "ownership".
+TEST_CASE("If not found, returns nullopt", "[search_id]") {
+	GatorBST tree;
+	REQUIRE(!tree.SearchID(50).has_value());
+}
+
+TEST_CASE("If found, returns a string_view", "[search_id]") {
+	GatorBST tree;
+	tree.Insert(50, "Martina");
+	auto result = tree.SearchID(50);
+	REQUIRE(result.has_value());
+	REQUIRE(result.value() == "Martina");
+}
 
 //searchNAME tests:
 // Searches for name. Since multiple UFID's can share the same name, returns a vector with all matching ID's in ascending order.
