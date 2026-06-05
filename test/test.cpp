@@ -84,6 +84,16 @@ TEST_CASE("Returns empty vector for non-existent name", "[search_name]") {
 //Remove tests:
 // Deletes node with provided UFID. If found (and removed), return true. If node was not present, return false.
 // If there are two children, replaces with inorder SUCCESSOR.
+TEST_CASE("Remove existing node returns true", "[remove]") {
+	GatorBST tree;
+	REQUIRE(tree.Remove(50) == false);
+}
+TEST_CASE("Remove from empty tree returns false", "[remove]") {
+	GatorBST tree;
+	tree.Insert(50, "Martina");
+	REQUIRE(tree.Remove(50) == true);
+	REQUIRE(!tree.SearchID(50).has_value());
+}
 
 //preorder tests:
 // Performs a preorder traversal and returns list of node pointers if there were nodes in the tree.
